@@ -1,0 +1,26 @@
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+
+module.exports = function (db) {
+    passport.use(new LocalStrategy({
+            usernameField: 'username',
+            passwordField: 'password'
+//        ,
+//       passReqToCallback: true,
+//                 session: true
+        },
+        function (username, password, done) {
+            var user = {
+                username: username,
+                password: password
+            };    
+        
+            db.collection('users').findOne(user,
+                function (err, results) {
+                    done(null, results);
+                }
+            );
+        }
+    ));  
+};
