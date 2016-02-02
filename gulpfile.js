@@ -40,6 +40,7 @@ gulp.task('inject', function () {
         .pipe(gulp.dest('./src/views'));
 });
 
+//gulp.task('serve', ['inject'], function () {
 gulp.task('serve', ['style', 'inject'], function () {
     var options = {
         script: 'app.js',
